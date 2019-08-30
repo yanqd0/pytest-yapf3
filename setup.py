@@ -1,46 +1,62 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Setup this package.
+"""
 
-import os
-import codecs
-from setuptools import setup
+from setuptools import find_packages, setup
 
-
-def read(fname):
-    file_path = os.path.join(os.path.dirname(__file__), fname)
-    return codecs.open(file_path, encoding='utf-8').read()
-
+_TEST_REQUIRES = [
+    'mock',
+    'pytest',
+    'pytest-cov',
+    'pytest-flake8',
+    'pytest-isort',
+    'pytest-mock',
+    'pytest-pep8',
+    'pytest-pylint',
+]
 
 setup(
-    name='pytest-yapf',
-    version='0.1.1',
-    author='Roman Osipenko',
-    author_email='roman.osipenko@djangostars.com',
-    maintainer='Roman Osipenko',
-    maintainer_email='roman.osipenko@djangostars.com',
-    license='MIT',
-    url='https://github.com/django-stars/pytest-yapf',
-    description='Run yapf',
-    long_description=read('README.rst'),
-    py_modules=['pytest_yapf'],
-    install_requires=['pytest>=3.1.1', 'yapf>=0.16.2'],
+    use_scm_version=True,
+    zip_safe=False,
+    # Package modules and data
+    packages=find_packages('src'),
+    package_dir={'': 'src'},
+    # Entries
+    entry_points={
+        'pytest11': ('yapf = pytest_yapf3', ),
+    },
+    # Requires
+    python_requires='>=3.4',
+    install_requires=(
+        'pytest>=3.1.1',
+        'yapf>=0.16.2',
+    ),
+    tests_require=_TEST_REQUIRES,
+    extras_require={
+        'dev': _TEST_REQUIRES + [
+            'flake8',
+            'isort',
+            'pylint',
+        ],
+    },
+    # PyPI Metadata
+    keywords=['pytest', 'yapf', 'sc'],
+    platforms=['any'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Framework :: Pytest',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Testing',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: Implementation :: CPython',
         'Operating System :: OS Independent',
         'License :: OSI Approved :: MIT License',
     ],
-    entry_points={
-        'pytest11': [
-            'yapf = pytest_yapf',
-        ],
-    },
 )
