@@ -92,4 +92,4 @@ class YapfItem(pytest.Item, pytest.File):
         """
         if excinfo.errisinstance(YapfError):
             return excinfo.value.args[0]
-        return super().repr_failure(excinfo)
+        return super().repr_failure(excinfo, style)
