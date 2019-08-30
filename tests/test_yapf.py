@@ -16,8 +16,10 @@ def test_yapf_failure(testdir):
 
     result = testdir.runpytest('--yapf', '-v')
 
-    # XXX: -2/+2 is wrong value. There is only -1/+1
-    result.stdout.fnmatch_lines([u'*Code formatting is not correct.', u'*Diff: -2/+2 lines'])
+    # -2/+2 is wrong value. There is only -1/+1
+    result.stdout.fnmatch_lines([
+        '*diff: +2/-2 lines',
+    ])
     assert result.ret != 0
 
 
