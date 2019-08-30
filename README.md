@@ -1,5 +1,8 @@
 # pytest-yapf3
 
+[![Travis](https://travis-ci.org/yanqd0/pytest-yapf3.svg?branch=master)](https://travis-ci.org/yanqd0/pytest-yapf3)
+[![AppVeyor](https://ci.appveyor.com/api/projects/status/umf6393qo2y7afog/branch/master?svg=true)](https://ci.appveyor.com/project/yanqd0/pytest-yapf3/branch/master)
+
 Validate your Python file format with yapf.
 
 This is a [pytest] plugin, which make sure your python file is exactly formatted by yapf,
