@@ -33,6 +33,10 @@ setup(
         'pytest>=3.1.1',
         'yapf>=0.16.2',
     ),
+    setup_requires=[
+        'pytest-runner',
+        'setuptools-scm',
+    ],
     tests_require=_TEST_REQUIRES,
     extras_require={
         'dev': _TEST_REQUIRES + [
