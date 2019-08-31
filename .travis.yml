@@ -3,8 +3,6 @@ sudo: false
 
 language: python
 
-cache: pip
-
 python:
   - "3.4"
   - "3.5"
@@ -12,10 +10,19 @@ python:
   - "3.7"
 
 install:
-  - pip install .[dev]
+  - pip install --upgrade .[dev]
+  - pip install codecov
+
+before_script:
+  - pip list
 
 script:
   - pytest
 
+after_success:
+  - codecov
+
 before_cache:
   - rm -rf $HOME/.cache/pip/log
+
+cache: pip
