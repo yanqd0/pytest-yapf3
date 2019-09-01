@@ -26,3 +26,26 @@ before_cache:
   - rm -rf $HOME/.cache/pip/log
 
 cache: pip
+
+before_deploy:
+  - python setup.py sdist bdist_wheel
+
+deploy:
+  - provider: releases
+    api_key:
+      secure: JKhF/jxkAZkQez+Q8+DOVKTHRCObIitCaU7AV6sYht+0ThyaoBi2fk3l1xKB506XNuqX/wfVk2ulnaAROANeMZC+0wY1emg8ej8trpTJToErt8+yVnKd/yb+qz5Y//N7wKrh2YSiCYo0fdAe+ay67FzTIkDrIFfjzdS2ecalkoKr+Wcr/2EoxqASdQBoEf/UekIVaI2nbPyC2e+UH9zI5tfalVH4b5zbo1ojwizzBHM7fet7gKwXc496ftIFpu1ilO0/EwPTLNsoEe1nLpSTegQM+lkjgDcC8jnP5MyN9c3Tutl4exMJgKyBob9phor6UOGZnV7x0FOyTJ7nn1LL0kcbJ5NPyKXLPthMAxRYRGxQA6pGoZQ+vmG8jNMkNseFk9GhT0/3M1smJr5/c2JJRvpmu0Vt60wliq9voYDMp49wQJPf37nnmtuF+YHc4pLyMwXPxR5aI33twCwNto19TuE2gDBHXr+teOzvZQqFq4ZATeMedf4uprDfVxrFbmQm5EPl9sQuTbkus46pipThLZ1VeRVoJuJWVfsfZG938sgH0N+wW9rB7kvcsHuTAi+NkrQP1va2TcSQJhP4amW1+pk6xwXrKmOtfWPKh95MAuP6bKjxsUDZe1VBRa1iQOY6XsZVFujZeMUP81D43Pc4nnCDpys3beF4fWzL61hWV+A=
+    file_glob: true
+    file: dist/*
+    on:
+      repo: yanqd0/pytest-yapf3
+      tags: true
+  - provider: pypi
+    user: yanqd0
+    password:
+      secure: xPa0qrzna8Sy1cm2C4zjAF2ze9EfBSmILcS6+CPZw1NfGJ3j+6mLTTe5saJ/cIKOcNOV2WxxFl0tOT5O1eBAWrYq6Nhxk7AFO+JfAk/VBrb4dINQheVux8Bkej+nkIQ0GWXe03Jba2CeexzEEE+9IkKdGWrSzGgLK5u1m8rnnqrrwvYONUiBwkHQR5f6DfGearYjC2RPYymp6r8UYCIxiJKF28Of34HhaBPBmninR4lm3zQuy8FFSkAHvLggRI/4S7NcfxC5nApon+9EXLQ3yZJwjVMV36MgVSK/xIif40noQeXGY3s9NwHJOMVDJjXXz9VbCjLetI659WTGTWlJD13cCb9i5b+YFmTSqE20gPErJfUYxBJMZAZ20SDNAVCpGpQAFePN8QBTN6V3HJPT6xdUA8sIooRKGWnWL3DJ81ZX+p1nbiZz3E4vdbl/2v976BrQoPd2CtFLPy98yDPs4kjPL5EWJsTpb2AqSdGkk6FRWpVKaMj+P7Z9VsGI5QU+4RAoYLNmtzGgMjV9YRfUQM/BDZ6lA7yXN5TjfHLun0lgJDNkwSfOVVanK6Ol1QUzoLmEltNFGQ43/63+Y2mYUJ8oIzusqdsGQf3VueY7ZNuZUcetLFY2Dsvy8Nj/yH1O5vVf2MxdGbOeJhJUSPWRscNsG2jS2poyrcBzmKv/1AY=
+    distributions: sdist bdist_wheel
+    on:
+      tags: true
+      repo: yanqd0/pytest-yapf3
+      python: "3.7"
+    skip_existing: true
