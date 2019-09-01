@@ -1,8 +1,8 @@
-# pytest-yapf3 Change Log
+# Change Log
 
 ## Release 0.2.0
 
-Since forked from [pytest-yapf] `0.1.1`, there are some improvements:
+Since forked from [pytest-yapf](https://pypi.org/project/pytest-yapf/) `0.1.1`, there are some improvements:
 
 - Restructure the project and rewrite documents
 - Support Python 3.4+ only
