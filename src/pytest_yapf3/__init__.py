@@ -1,6 +1,8 @@
 """
 Validate your Python file format with yapf.
 """
+import re
+
 import pytest
 from yapf.yapflib import file_resources
 from yapf.yapflib.yapf_api import FormatFile
@@ -76,13 +78,12 @@ class YapfItem(pytest.Item, pytest.File):
         if self.show_diff:
             message = diff
         else:
-            lines = diff.split('\n')
-            added = len([x for x in lines if x.startswith('+')])
-            removed = len([x for x in lines if x.startswith('-')])
+            added = sum(1 for i in re.finditer(r'^\+', diff, re.MULTILINE))
+            removed = sum(1 for i in re.finditer(r'^\-', diff, re.MULTILINE))
             message = 'ERROR: {} YAPF diff: +{}/-{} lines'.format(
                 self.path,
-                added,
-                removed,
+                added - 1,
+                removed - 1,
             )
         raise YapfError(message)
 
