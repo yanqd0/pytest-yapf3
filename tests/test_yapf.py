@@ -29,7 +29,7 @@ def test_yapf_failure_diff(testdir):
 
     result = testdir.runpytest('--yapf', '--yapfdiff', '-v')
 
-    result.stdout.fnmatch_lines([u'*-AAA =8*', u'*+AAA = 8*'])
+    result.stdout.fnmatch_lines(['*-AAA =8*', '*+AAA = 8*'])
     assert result.ret != 0
 
 
