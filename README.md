@@ -2,6 +2,7 @@
 
 [![Travis](https://travis-ci.org/yanqd0/pytest-yapf3.svg?branch=master)](https://travis-ci.org/yanqd0/pytest-yapf3)
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/umf6393qo2y7afog/branch/master?svg=true)](https://ci.appveyor.com/project/yanqd0/pytest-yapf3/branch/master)
+[![codecov](https://codecov.io/gh/yanqd0/pytest-yapf3/branch/master/graph/badge.svg)](https://codecov.io/gh/yanqd0/pytest-yapf3)
 
 Validate your Python file format with yapf.
 
@@ -34,6 +35,7 @@ With `--yapfdiff`, a full text of `yapf -d` is displayed.
 ## Features and Todos
 
 - [x] Basic support to validate `yapf`.
+- [x] Fix the diff line count error and improve the performance.
 - [ ] Display yapf as the session name.
 - [ ] Display `YAPF` in `pytest --verbose`.
 - [ ] Support `--yapf-ignore` to ignore specified files.
