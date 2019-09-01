@@ -38,6 +38,7 @@ deploy:
     on:
       repo: yanqd0/pytest-yapf3
       tags: true
+    skip_cleanup: true
   - provider: pypi
     user: yanqd0
     password:
