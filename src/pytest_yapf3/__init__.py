@@ -94,3 +94,10 @@ class YapfItem(pytest.Item, pytest.File):
         if excinfo.errisinstance(YapfError):
             return excinfo.value.args[0]
         return super().repr_failure(excinfo, style)
+
+    def reportinfo(self):
+        """
+        This is used for representing the test location
+        and is also consulted when reporting in verbose mode.
+        """
+        return self.fspath, -1, 'YAPF-check'
