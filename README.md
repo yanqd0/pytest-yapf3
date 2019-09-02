@@ -13,6 +13,13 @@ or it will crash when running `pytest`.
 
 ## Install
 
+[![Version](https://img.shields.io/pypi/v/pytest-yapf3)](https://pypi.org/project/pytest-flake8/)
+[![Python](https://img.shields.io/pypi/pyversions/pytest-yapf3)](https://pypi.org/project/pytest-flake8/)
+[![Format](https://img.shields.io/pypi/format/pytest-yapf3)](https://pypi.org/project/pytest-flake8/)
+[![Status](https://img.shields.io/pypi/status/pytest-yapf3)](https://pypi.org/project/pytest-flake8/)
+[![Download](https://img.shields.io/pypi/dm/pytest-yapf3)](https://pypi.org/project/pytest-flake8/)
+[![MIT](https://img.shields.io/pypi/l/pytest-yapf3)](https://github.com/yanqd0/pytest-yapf3/blob/master/LICENSE)
+
 ```sh
 pip install pytest-yapf3
 ```
@@ -58,8 +65,6 @@ pytest
 ```
 
 ## License
-
-[![License](https://img.shields.io/github/license/yanqd0/pytest-yapf3.svg)](https://github.com/yanqd0/pytest-yapf3/blob/master/LICENSE)
 
 > The MIT License (MIT)
 >
