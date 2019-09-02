@@ -1,5 +1,10 @@
 # Change Log
 
+## Release 0.3.0
+
+- Display `YAPF-check` as the error session name
+- Display `::YAPF` in `pytest --verbose`
+
 ## Release 0.2.0
 
 Since forked from [pytest-yapf](https://pypi.org/project/pytest-yapf/) `0.1.1`, there are some improvements:
