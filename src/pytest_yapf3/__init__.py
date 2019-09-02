@@ -56,6 +56,7 @@ class YapfItem(pytest.Item, pytest.File):
     """
     def __init__(self, path, parent):
         super(YapfItem, self).__init__(path, parent)
+        self._nodeid += "::YAPF"
         self.path = str(path)
         self.show_diff = self.parent.config.option.yapfdiff is True
         self.style = (
