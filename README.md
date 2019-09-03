@@ -33,11 +33,17 @@ Modify `setup.cfg` (or `pytest.ini`):
 addopts =
     --yapf
     --yapfdiff
+yapf-ignore =
+    setup.py
+    src/package/auto_generated/**.py
 ```
 
 Add `--yapf` to [pytest] configuration `addopts`.
 By default, only line summaries is displayed.
 With `--yapfdiff`, a full text of `yapf -d` is displayed.
+
+An optional `yapf-ignore` is supported.
+Each line specifies a glob pattern of files which should not check `yapf`.
 
 ## Features and Todos
 
@@ -46,7 +52,7 @@ With `--yapfdiff`, a full text of `yapf -d` is displayed.
 - [x] Display `YAPF-check` as the error session name.
 - [x] Display `YAPF` in `pytest --verbose`.
 - [x] Add `yapf` as a marker to enable `pytest -m yapf`.
-- [ ] Support `--yapf-ignore` to ignore specified files.
+- [x] Support `yapf-ignore` to ignore specified files.
 - [ ] Skip running if a file is not changed.
 - [ ] 100% test coverage.
 

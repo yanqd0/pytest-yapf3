@@ -31,6 +31,12 @@ def pytest_addoption(parser):
         default=None,
         help='style to be used by yapf.',
     )
+    parser.addini(
+        'yapf-ignore',
+        type='linelist',
+        help='each line specifies a glob pattern of files,'
+        'which will not check YAPF',
+    )
 
 
 def pytest_configure(config):
@@ -39,6 +45,12 @@ def pytest_configure(config):
     after command line options have been parsed.
     """
     config.addinivalue_line('markers', 'yapf: Tests which run yapf.')
+    if config.option.yapf:
+        config.yapf_ignore = config.getini('yapf-ignore')
+
+
+def _should_ignore(path, ignore_globs):
+    return any(path.fnmatch(glob) for glob in ignore_globs)
 
 
 def pytest_collect_file(path, parent):
@@ -47,7 +59,11 @@ def pytest_collect_file(path, parent):
     Any new node needs to have the specified parent as a parent.
     """
     config = parent.config
-    if config.option.yapf and path.ext == '.py':
+    if (
+            config.option.yapf and
+            path.ext == '.py' and
+            not _should_ignore(path, config.yapf_ignore)
+    ):  # yapf: disable
         return YapfItem(path, parent)
     return None
 
