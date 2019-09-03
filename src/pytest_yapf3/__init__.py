@@ -104,8 +104,9 @@ class YapfItem(pytest.Item, pytest.File):
         if self.show_diff:
             message = diff
         else:
+            diff = diff.replace('\r', '\n')
             added = sum(1 for i in re.finditer(r'^\+', diff, re.MULTILINE))
-            removed = sum(1 for i in re.finditer(r'^\-', diff, re.MULTILINE))
+            removed = sum(1 for i in re.finditer(r'^-', diff, re.MULTILINE))
             message = 'ERROR: {} YAPF diff: +{}/-{} lines'.format(
                 self.path,
                 added - 1,

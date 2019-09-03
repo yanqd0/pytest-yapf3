@@ -4,6 +4,7 @@
 
 - Add `yapf` as a pytest marker to enable `pytest -m yapf`
 - Support `yapf-ignore` to ignore specified files
+- Fix a probabilistic issue caused by `\r`
 
 ## Release 0.3.0
 
