@@ -1,5 +1,10 @@
 # Change Log
 
+## Release 0.4.0
+
+- Add `yapf` as a pytest marker to enable `pytest -m yapf`
+- Support `yapf-ignore` to ignore specified files
+
 ## Release 0.3.0
 
 - Display `YAPF-check` as the error session name
