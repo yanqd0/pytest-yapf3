@@ -33,6 +33,14 @@ def pytest_addoption(parser):
     )
 
 
+def pytest_configure(config):
+    """
+    This hook is called for every plugin and initial conftest file
+    after command line options have been parsed.
+    """
+    config.addinivalue_line('markers', 'yapf: Tests which run yapf.')
+
+
 def pytest_collect_file(path, parent):
     """
     Return collection Node or None for the given path.
@@ -56,13 +64,14 @@ class YapfItem(pytest.Item, pytest.File):
     """
     def __init__(self, path, parent):
         super(YapfItem, self).__init__(path, parent)
-        self._nodeid += "::YAPF"
+        self._nodeid += '::YAPF'
         self.path = str(path)
         self.show_diff = self.parent.config.option.yapfdiff is True
         self.style = (
             self.parent.config.getoption('yapfstyle') or
             file_resources.GetDefaultStyleForDir(self.path)
         )  # yapf: disable
+        self.add_marker('yapf')
 
     def runtest(self):
         """

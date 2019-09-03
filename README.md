@@ -45,6 +45,7 @@ With `--yapfdiff`, a full text of `yapf -d` is displayed.
 - [x] Fix the diff line count error and improve the performance.
 - [x] Display `YAPF-check` as the error session name.
 - [x] Display `YAPF` in `pytest --verbose`.
+- [x] Add `yapf` as a marker to enable `pytest -m yapf`.
 - [ ] Support `--yapf-ignore` to ignore specified files.
 - [ ] Skip running if a file is not changed.
 - [ ] 100% test coverage.
