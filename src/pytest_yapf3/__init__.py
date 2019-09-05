@@ -7,6 +7,8 @@ import pytest
 from yapf.yapflib import file_resources
 from yapf.yapflib.yapf_api import FormatFile
 
+HISTKEY = "yapf/mtimes"
+
 
 def pytest_addoption(parser):
     """
@@ -47,6 +49,20 @@ def pytest_configure(config):
     config.addinivalue_line('markers', 'yapf: Tests which run yapf.')
     if config.option.yapf:
         config.yapf_ignore = config.getini('yapf-ignore')
+    if hasattr(config, 'cache'):
+        config.yapf_mtimes = config.cache.get(HISTKEY, {})
+    else:
+        config.yapf_mtimes = {}
+
+
+def pytest_unconfigure(config):
+    """
+    This hook is called before test process is exited.
+
+    The cache is flushed in the end.
+    """
+    if hasattr(config, "cache"):
+        config.cache.set(HISTKEY, config.yapf_mtimes)
 
 
 def _should_ignore(path, ignore_globs):
@@ -89,6 +105,12 @@ class YapfItem(pytest.Item, pytest.File):
         )  # yapf: disable
         self.add_marker('yapf')
 
+        self.__mtime = self.fspath.mtime()
+
+    def setup(self):
+        if self.__mtime == self.config.yapf_mtimes.get(self.name, 0):
+            pytest.skip("file(s) previously passed yapf checks")
+
     def runtest(self):
         """
         Run yapf with each file, raise YapfError with messages if failed.
@@ -99,6 +121,7 @@ class YapfItem(pytest.Item, pytest.File):
             print_diff=True,
         )
         if not changed:
+            self.config.yapf_mtimes[self.name] = self.__mtime
             return
 
         if self.show_diff:
