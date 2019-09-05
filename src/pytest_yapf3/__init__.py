@@ -1,6 +1,5 @@
-"""
-Validate your Python file format with yapf.
-"""
+"""Validate your Python file format with yapf."""
+
 import re
 
 import pytest
@@ -11,10 +10,7 @@ HISTKEY = "yapf/mtimes"
 
 
 def pytest_addoption(parser):
-    """
-    Parse optional arguments configured as `addopts` in pytest.ini,
-    or trasferred from CLI.
-    """
+    """Parse optional arguments from CLI or configured as `addopts`."""
     group = parser.getgroup('yapf')
     group.addoption(
         '--yapf',
@@ -43,6 +39,8 @@ def pytest_addoption(parser):
 
 def pytest_configure(config):
     """
+    Load arguments from CLI, set more values to config.
+
     This hook is called for every plugin and initial conftest file
     after command line options have been parsed.
     """
@@ -57,9 +55,9 @@ def pytest_configure(config):
 
 def pytest_unconfigure(config):
     """
-    This hook is called before test process is exited.
+    Flush the cache in the end.
 
-    The cache is flushed in the end.
+    This hook is called before test process is exited.
     """
     if hasattr(config, "cache"):
         config.cache.set(HISTKEY, config.yapf_mtimes)
@@ -72,6 +70,7 @@ def _should_ignore(path, ignore_globs):
 def pytest_collect_file(path, parent):
     """
     Return collection Node or None for the given path.
+
     Any new node needs to have the specified parent as a parent.
     """
     config = parent.config
@@ -85,16 +84,13 @@ def pytest_collect_file(path, parent):
 
 
 class YapfError(Exception):
-    """
-    Raise this with message when any yapf error occurs.
-    """
+    """Raise this with message when any yapf error occurs."""
 
 
 class YapfItem(pytest.Item, pytest.File):
-    """
-    Run yapf for every file.
-    """
+    """Run yapf for every file."""
     def __init__(self, path, parent):
+        """Set item options from global config."""
         super(YapfItem, self).__init__(path, parent)
         self._nodeid += '::YAPF'
         self.path = str(path)
@@ -104,16 +100,19 @@ class YapfItem(pytest.Item, pytest.File):
             file_resources.GetDefaultStyleForDir(self.path)
         )  # yapf: disable
         self.add_marker('yapf')
-
         self.__mtime = self.fspath.mtime()
 
     def setup(self):
+        """Skip if the file is not changed since last success."""
         if self.__mtime == self.config.yapf_mtimes.get(self.name, 0):
             pytest.skip("file(s) previously passed yapf checks")
 
     def runtest(self):
         """
-        Run yapf with each file, raise YapfError with messages if failed.
+        Run yapf with each file.
+
+        Raise YapfError with messages if failed,
+        or save the file mtime.
         """
         diff, _, changed = FormatFile(
             self.path,
@@ -138,15 +137,15 @@ class YapfItem(pytest.Item, pytest.File):
         raise YapfError(message)
 
     def repr_failure(self, excinfo, style=None):
-        """
-        Repare the failure YapfError.
-        """
+        """Repair the failure YapfError."""
         if excinfo.errisinstance(YapfError):
             return excinfo.value.args[0]
         return super().repr_failure(excinfo, style)
 
     def reportinfo(self):
         """
+        Define the report title.
+
         This is used for representing the test location
         and is also consulted when reporting in verbose mode.
         """

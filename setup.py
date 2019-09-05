@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
-Setup this package.
-"""
+"""Setup this package."""
 
 from setuptools import find_packages, setup
 
@@ -10,6 +8,7 @@ _TEST_REQUIRES = [
     'mock',
     'pytest',
     'pytest-cov',
+    'pytest-docstyle',
     'pytest-flake8',
     'pytest-isort',
     'pytest-mock',
