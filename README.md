@@ -3,6 +3,7 @@
 [![Travis](https://travis-ci.org/yanqd0/pytest-yapf3.svg?branch=master)](https://travis-ci.org/yanqd0/pytest-yapf3)
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/umf6393qo2y7afog/branch/master?svg=true)](https://ci.appveyor.com/project/yanqd0/pytest-yapf3/branch/master)
 [![codecov](https://codecov.io/gh/yanqd0/pytest-yapf3/branch/master/graph/badge.svg)](https://codecov.io/gh/yanqd0/pytest-yapf3)
+[![Code style: yapf](https://img.shields.io/badge/code%20style-yapf-blue)](https://github.com/google/yapf)
 
 Validate your Python file format with yapf.
 
@@ -69,6 +70,27 @@ Run test:
 
 ```sh
 pytest
+```
+
+## Badge
+
+Like [black], if your project always pass yapf checking provided by this project,
+you can use an unofficial badge to show off.
+
+[black]:https://github.com/psf/black#show-your-style
+
+### Markdown (README.md)
+
+```markdown
+[![Code style: yapf](https://img.shields.io/badge/code%20style-yapf-blue)](https://github.com/google/yapf)
+```
+
+### reStructuredText (README.rst)
+
+```rst
+.. image:: https://img.shields.io/badge/code%20style-yapf-blue
+    :target: https://github.com/google/yapf
+    :alt: Code style: yapf
 ```
 
 ## License
