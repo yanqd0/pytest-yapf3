@@ -40,11 +40,23 @@ yapf-ignore =
 ```
 
 Add `--yapf` to [pytest] configuration `addopts`.
+If run with `pytest -m yapf`, only `yapf` is checked.
+
 By default, only line summaries is displayed.
-With `--yapfdiff`, a full text of `yapf -d` is displayed.
+With an optional `--yapfdiff`, a full text of `yapf -d` is displayed.
+If not configured here, `pytest --yapfdiff` will also work.
 
 An optional `yapf-ignore` is supported.
 Each line specifies a glob pattern of files which should not check `yapf`.
+
+The `pytest` will cache success results of pytest-yapf3, and will not check again if files not changed.
+Sometimes you may want to disable it.
+There are 2 ways:
+
+- `pytest -p no:cacheprovider`
+    This may crash if any other pytest plugin not supports.
+- `rm -rf .pytest_cache/v/yapf`
+    This is ugly, but safe for any environment.
 
 ## Features and Todos
 
@@ -54,7 +66,7 @@ Each line specifies a glob pattern of files which should not check `yapf`.
 - [x] Display `YAPF` in `pytest --verbose`.
 - [x] Add `yapf` as a marker to enable `pytest -m yapf`.
 - [x] Support `yapf-ignore` to ignore specified files.
-- [ ] Skip running if a file is not changed.
+- [x] Skip running if a file is not changed.
 - [ ] 100% test coverage.
 
 ## Develop

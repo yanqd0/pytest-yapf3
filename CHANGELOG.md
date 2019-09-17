@@ -1,5 +1,10 @@
 # Change Log
 
+## Release 0.5.0
+
+- Skip running if a file is not changed.
+- Add more usage description in README.
+
 ## Release 0.4.0
 
 - Add `yapf` as a pytest marker to enable `pytest -m yapf`
