@@ -136,7 +136,7 @@ class YapfItem(pytest.Item, pytest.File):
             )
         raise YapfError(message)
 
-    def repr_failure(self, excinfo, style=None):
+    def repr_failure(self, excinfo, _=None):
         """Repair the failure YapfError."""
         if excinfo.errisinstance(YapfError):
             return excinfo.value.args[0]
