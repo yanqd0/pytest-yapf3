@@ -115,5 +115,7 @@ This repository is forked from [pytest-yapf] in 2019, which is [not maintained] 
 Besides extra features, the project structure is adjusted,
 and the code is enhanced to pass linters like flake8, pylint and, of course, yapf.
 
+The `3` in `pytest-yapf3` means this package supports Python 3 only.
+
 [pytest-yapf]:https://github.com/django-stars/pytest-yapf
 [not maintained]:https://github.com/django-stars/pytest-yapf/issues/1
