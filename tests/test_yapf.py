@@ -14,6 +14,15 @@ def test_yapf_success(testdir):
     assert result.ret == 0
 
 
+def test_yapf_success_without_cache(testdir):
+    testdir.makepyfile('''
+        SOME_VALUE = 8
+    ''')
+
+    result = testdir.runpytest('--yapf', '-v', '-p', 'no:cacheprovider')
+    assert result.ret == 0
+
+
 def test_yapf_failure(testdir):
     testdir.makepyfile('''
         AAA =8
@@ -51,6 +60,18 @@ def test_yapf_error(testdir):
     result = testdir.runpytest('--yapf', '-v')
 
     result.stdout.fnmatch_lines([
-        'E   NameError: name \'AAA\' is not defined',
+        "E   NameError: name 'AAA' is not defined",
+    ])
+    assert result.ret != 0
+
+
+def test_syntax_error(testdir):
+    with open('test.py', 'w') as file:
+        file.write('---')
+
+    result = testdir.runpytest('--yapf', '-v')
+
+    result.stdout.fnmatch_lines([
+        'E   SyntaxError: invalid syntax',
     ])
     assert result.ret != 0

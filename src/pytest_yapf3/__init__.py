@@ -140,7 +140,7 @@ class YapfItem(pytest.Item, pytest.File):
         """Repair the failure YapfError."""
         if excinfo.errisinstance(YapfError):
             return excinfo.value.args[0]
-        return super().repr_failure(excinfo, style)
+        return super().repr_failure(excinfo)
 
     def reportinfo(self):
         """
