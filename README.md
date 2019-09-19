@@ -67,7 +67,7 @@ There are 2 ways:
 - [x] Add `yapf` as a marker to enable `pytest -m yapf`.
 - [x] Support `yapf-ignore` to ignore specified files.
 - [x] Skip running if a file is not changed.
-- [ ] 100% test coverage.
+- [x] 100% test coverage.
 
 ## Develop
 

@@ -1,5 +1,12 @@
 # Change Log
 
+## Release 0.5.1
+
+- Fix coverage missing lines.
+- 100% test coverage.
+- Fix a crash when yapf crash.
+- Change development status to stable.
+
 ## Release 0.5.0
 
 - Skip running if a file is not changed.
