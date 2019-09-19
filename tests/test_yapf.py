@@ -14,6 +14,17 @@ def test_yapf_success(testdir):
     assert result.ret == 0
 
 
+def test_yapf_success_with_cache(testdir):
+    testdir.makepyfile('''
+        SOME_VALUE = 8
+    ''')
+
+    result = testdir.runpytest('--yapf', '-v')
+    assert result.ret == 0
+    result = testdir.runpytest('--yapf', '-v')
+    assert result.ret == 0
+
+
 def test_yapf_success_without_cache(testdir):
     testdir.makepyfile('''
         SOME_VALUE = 8
