@@ -1,11 +1,16 @@
+import pytest_yapf3 as yapf3
+
+
+def test_histkey():
+    assert yapf3.HISTKEY == 'yapf/mtimes'
+
+
 def test_yapf_success(testdir):
     testdir.makepyfile('''
         SOME_VALUE = 8
     ''')
 
     result = testdir.runpytest('--yapf', '-v')
-    print(result)
-
     assert result.ret == 0
 
 

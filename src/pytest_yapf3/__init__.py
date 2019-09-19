@@ -6,7 +6,7 @@ import pytest
 from yapf.yapflib import file_resources
 from yapf.yapflib.yapf_api import FormatFile
 
-HISTKEY = "yapf/mtimes"
+HISTKEY = 'yapf/mtimes'
 
 
 def pytest_addoption(parser):
