@@ -41,7 +41,8 @@ setup(
         'dev': _TEST_REQUIRES + [
             'flake8',
             'isort',
-            'pylint',
+            'pylint~=2.4.4',
+            'six~=1.12.0',
         ],
     },
     # PyPI Metadata
