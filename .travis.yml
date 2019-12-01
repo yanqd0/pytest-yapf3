@@ -22,11 +22,6 @@ script:
 after_success:
   - codecov
 
-before_cache:
-  - rm -rf $HOME/.cache/pip/log
-
-cache: pip
-
 before_deploy:
   - python setup.py sdist bdist_wheel
 
