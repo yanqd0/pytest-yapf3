@@ -16,4 +16,4 @@ install:
 build: false
 
 test_script:
-  - "%PYTHON%\\python.exe pipenv run pytest"
+  - "%PYTHON%\\python.exe -m pipenv run pytest"
