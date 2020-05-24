@@ -11,10 +11,7 @@ python:
 
 install:
   - pip install pipenv
-  - pipenv install
-
-before_script:
-  - pipenv graph
+  - pipenv install --dev
 
 script:
   - pipenv run pytest
