@@ -1,8 +1,8 @@
 ---
 environment:
   matrix:
-    - PYTHON: "C:\\Python36-x64"
     - PYTHON: "C:\\Python37-x64"
+    - PYTHON: "C:\\Python38-x64"
 
 skip_commits:
   files:
@@ -10,9 +10,10 @@ skip_commits:
     - "LICENSE"
 
 install:
-  - "%PYTHON%\\python.exe -m pip install -U .[dev]"
+  - "%PYTHON%\\python.exe -m pip install pipenv"
+  - "%PYTHON%\\python.exe -m pipenv install --dev"
 
 build: false
 
 test_script:
-  - "%PYTHON%\\python.exe -m pytest"
+  - "%PYTHON%\\python.exe pipenv run pytest"
