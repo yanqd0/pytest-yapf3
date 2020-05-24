@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+pytest-flake8 = "*"
+pytest-isort = "*"
+pytest-mock = "*"
+pytest-pylint = "*"
+pytest-pycodestyle = "*"
+pytest-yapf3 = {editable = true,path = "."}
+mock = "*"
+pytest-docstyle = "<2"
+pytest-runner = "*"
+setuptools-scm = "*"
+setuptools-pipfile = "*"
+
+[packages]
+yapf = "*"
+pytest = "*"
