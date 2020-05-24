@@ -10,20 +10,21 @@ python:
   - "3.8"
 
 install:
-  - pip install --upgrade .[dev]
-  - pip install codecov
+  - pip install pipenv
+  - pipenv install
 
 before_script:
-  - pip list
+  - pipenv graph
 
 script:
-  - pytest
+  - pipenv run pytest
 
 after_success:
+  - pip install codecov
   - codecov
 
 before_deploy:
-  - python setup.py sdist bdist_wheel
+  - pipenv run python setup.py sdist bdist_wheel
 
 deploy:
   - provider: releases
@@ -34,6 +35,7 @@ deploy:
     on:
       repo: yanqd0/pytest-yapf3
       tags: true
+      python: "3.7"
     skip_cleanup: true
   - provider: pypi
     user: yanqd0
