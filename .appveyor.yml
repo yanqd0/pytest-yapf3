@@ -11,7 +11,7 @@ skip_commits:
 
 install:
   - "%PYTHON%\\python.exe -m pip install pipenv"
-  - "%PYTHON%\\python.exe -m pipenv install --dev"
+  - "%PYTHON%\\python.exe -m pipenv install --dev --skip-lock"
 
 build: false
 

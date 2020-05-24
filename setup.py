@@ -19,6 +19,7 @@ setup(
     setup_requires=[
         'pytest-runner',
         'setuptools-scm',
+        'setuptools-pipfile',
     ],
     use_pipfile={
         'path': 'Pipfile',
