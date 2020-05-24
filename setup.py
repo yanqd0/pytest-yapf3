@@ -6,14 +6,14 @@ from setuptools import find_packages, setup
 
 _TEST_REQUIRES = [
     'mock',
-    'pytest>=5.4',
+    'pytest',
     'pytest-cov',
     'pytest-docstyle<2',
     'pytest-flake8',
     'pytest-isort',
     'pytest-mock',
     'pytest-pycodestyle',
-    'pytest-pylint',
+    'pytest-pylint<0.16.0',
 ]
 
 setup(
