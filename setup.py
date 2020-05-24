@@ -6,7 +6,7 @@ from setuptools import find_packages, setup
 
 _TEST_REQUIRES = [
     'mock',
-    'pytest',
+    'pytest>=5.4',
     'pytest-cov',
     'pytest-docstyle<2',
     'pytest-flake8',
