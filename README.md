@@ -26,6 +26,13 @@ or it will crash when running `pytest`.
 pip install pytest-yapf3
 ```
 
+Requires:
+
+- Python 3.6 or above
+- Pytest 5.4 or above
+
+If someone use this with Python 3.5 or Pytest less than 5.4, set `'pytest-yapf3<0.6.0'`.
+
 ## Usage
 
 Modify `setup.cfg` (or `pytest.ini`):
@@ -110,7 +117,7 @@ you can use an unofficial badge to show off.
 
 > The MIT License (MIT)
 >
-> Copyright (c) 2019 Yan QiDong
+> Copyright (c) 2019~2020 Yan QiDong
 
 This repository is forked from [pytest-yapf] in 2019, which is [not maintained] since 2017.
 Besides extra features, the project structure is adjusted,
