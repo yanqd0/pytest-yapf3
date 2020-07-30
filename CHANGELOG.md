@@ -1,5 +1,11 @@
 # Change Log
 
+## Release 0.6.0
+
+- Upgrade pytest to 5.4+, fix a warning.
+- Support python 3.6+ only, abandon 3.5
+- Use Pipfile with `pipenv`
+
 ## Release 0.5.1
 
 - Fix coverage missing lines.

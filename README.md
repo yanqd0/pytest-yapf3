@@ -75,8 +75,8 @@ There are 2 ways:
 Prepare the environment:
 
 ```sh
-source your/virtual/env
-pip install -e .[dev]
+pipenv install --dev
+pipenv shell
 ```
 
 Run test:
