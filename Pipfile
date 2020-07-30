@@ -20,4 +20,4 @@ setuptools-pipfile = "*"
 
 [packages]
 yapf = "*"
-pytest = "*"
+pytest = ">=5.4"

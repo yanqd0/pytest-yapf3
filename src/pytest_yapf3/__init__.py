@@ -79,7 +79,7 @@ def pytest_collect_file(path, parent):
             path.ext == '.py' and
             not _should_ignore(path, config.yapf_ignore)
     ):  # yapf: disable
-        return YapfItem(path, parent)
+        return YapfFile.from_parent(parent=parent, fspath=path)
     return None
 
 
@@ -87,20 +87,26 @@ class YapfError(Exception):
     """Raise this with message when any yapf error occurs."""
 
 
-class YapfItem(pytest.Item, pytest.File):
+class YapfFile(pytest.File):  # pylint: disable=abstract-method
+    """The files to be collected."""
+    def collect(self):
+        yield YapfItem.from_parent(
+            parent=self,
+            name='YAPF',
+        )
+
+
+class YapfItem(pytest.Item):  # pylint: disable=abstract-method
     """Run yapf for every file."""
-    def __init__(self, path, parent):
-        """Set item options from global config."""
-        super(YapfItem, self).__init__(path, parent)
-        self._nodeid += '::YAPF'
-        self.path = str(path)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.show_diff = self.parent.config.option.yapfdiff is True
-        self.style = (
-            self.parent.config.getoption('yapfstyle') or
-            file_resources.GetDefaultStyleForDir(self.path)
-        )  # yapf: disable
         self.add_marker('yapf')
         self.__mtime = self.fspath.mtime()
+        self.__style = (
+            self.parent.config.getoption('yapfstyle') or
+            file_resources.GetDefaultStyleForDir(str(self.fspath))
+        )  # yapf: disable
 
     def setup(self):
         """Skip if the file is not changed since last success."""
@@ -115,8 +121,8 @@ class YapfItem(pytest.Item, pytest.File):
         or save the file mtime.
         """
         diff, _, changed = FormatFile(
-            self.path,
-            style_config=self.style,
+            str(self.fspath),
+            style_config=self.__style,
             print_diff=True,
         )
         if not changed:
@@ -127,20 +133,16 @@ class YapfItem(pytest.Item, pytest.File):
             message = diff
         else:
             diff = diff.replace('\r', '\n')
-            added = sum(1 for i in re.finditer(r'^\+', diff, re.MULTILINE))
-            removed = sum(1 for i in re.finditer(r'^-', diff, re.MULTILINE))
-            message = 'ERROR: {} YAPF diff: +{}/-{} lines'.format(
-                self.path,
-                added - 1,
-                removed - 1,
-            )
+            add = sum(1 for i in re.finditer(r'^\+', diff, re.MULTILINE)) - 1
+            remove = sum(1 for i in re.finditer(r'^-', diff, re.MULTILINE)) - 1
+            message = f'ERROR: {self.fspath} YAPF diff: +{add}/-{remove} lines'
         raise YapfError(message)
 
     def repr_failure(self, excinfo, _=None):
         """Repair the failure YapfError."""
         if excinfo.errisinstance(YapfError):
             return excinfo.value.args[0]
-        return super().repr_failure(excinfo)
+        return super().repr_failure(excinfo, 'native')
 
     def reportinfo(self):
         """

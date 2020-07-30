@@ -83,6 +83,6 @@ def test_syntax_error(testdir):
     result = testdir.runpytest('--yapf', '-v')
 
     result.stdout.fnmatch_lines([
-        'E   SyntaxError: invalid syntax',
+        'SyntaxError: invalid syntax',
     ])
     assert result.ret != 0
