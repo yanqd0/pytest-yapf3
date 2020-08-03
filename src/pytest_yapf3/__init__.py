@@ -110,7 +110,7 @@ class YapfItem(pytest.Item):  # pylint: disable=abstract-method
 
     def setup(self):
         """Skip if the file is not changed since last success."""
-        if self.__mtime == self.config.yapf_mtimes.get(self.name, 0):
+        if self.__mtime == self.config.yapf_mtimes.get(self.nodeid, 0):
             pytest.skip("file(s) previously passed yapf checks")
 
     def runtest(self):
@@ -126,7 +126,7 @@ class YapfItem(pytest.Item):  # pylint: disable=abstract-method
             print_diff=True,
         )
         if not changed:
-            self.config.yapf_mtimes[self.name] = self.__mtime
+            self.config.yapf_mtimes[self.nodeid] = self.__mtime
             return
 
         if self.show_diff:

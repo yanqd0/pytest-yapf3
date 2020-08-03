@@ -1,5 +1,9 @@
 # Change Log
 
+## Release 0.6.1
+
+- Fix cache missing.
+
 ## Release 0.6.0
 
 - Upgrade pytest to 5.4+, fix a warning.
