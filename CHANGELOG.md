@@ -1,5 +1,11 @@
 # Change Log
 
+## Release 0.6.2
+
+- Upgrade dependencies in Pipfile and its lock.
+- Enable GitHub actions.
+- Delete `.travis.yml` and `.appveyor.yml`
+
 ## Release 0.6.1
 
 - Fix cache missing.
