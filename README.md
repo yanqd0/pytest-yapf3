@@ -1,14 +1,15 @@
 # pytest-yapf3
 
-[![Travis](https://travis-ci.org/yanqd0/pytest-yapf3.svg?branch=master)](https://travis-ci.org/yanqd0/pytest-yapf3)
+<!-- [![Travis](https://travis-ci.org/yanqd0/pytest-yapf3.svg?branch=master)](https://travis-ci.org/yanqd0/pytest-yapf3) -->
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/umf6393qo2y7afog/branch/master?svg=true)](https://ci.appveyor.com/project/yanqd0/pytest-yapf3/branch/master)
-[![codecov](https://codecov.io/gh/yanqd0/pytest-yapf3/branch/master/graph/badge.svg)](https://codecov.io/gh/yanqd0/pytest-yapf3)
+<!-- [![codecov](https://codecov.io/gh/yanqd0/pytest-yapf3/branch/master/graph/badge.svg)](https://codecov.io/gh/yanqd0/pytest-yapf3) -->
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3446/badge)](https://bestpractices.coreinfrastructure.org/projects/3446)
 [![Code style: yapf](https://img.shields.io/badge/code%20style-yapf-blue)](https://github.com/google/yapf)
 
 Validate your Python file format with yapf.
 
-This is a [pytest] plugin, which make sure your python file is exactly formatted by yapf,
+This is a [pytest] plugin,
+which make sure your python file is exactly formatted by yapf,
 or it will crash when running `pytest`.
 
 [pytest]:https://pytest.org/
@@ -29,7 +30,9 @@ pip install pytest-yapf3
 Requires:
 
 - Python 3.6 or above
-- Pytest 5.4 or above
+- Pytest:
+    - `pytest>=5.4,<8` when `pytest-yapf3<0.7`
+    - `pytest>=7` when `pytest-yapf3>=0.7`
 
 If someone use this with Python 3.5 or Pytest less than 5.4, set `'pytest-yapf3<0.6.0'`.
 
