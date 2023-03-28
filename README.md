@@ -1,8 +1,10 @@
 # pytest-yapf3
 
 <!-- [![Travis](https://travis-ci.org/yanqd0/pytest-yapf3.svg?branch=master)](https://travis-ci.org/yanqd0/pytest-yapf3) -->
-[![AppVeyor](https://ci.appveyor.com/api/projects/status/umf6393qo2y7afog/branch/master?svg=true)](https://ci.appveyor.com/project/yanqd0/pytest-yapf3/branch/master)
 <!-- [![codecov](https://codecov.io/gh/yanqd0/pytest-yapf3/branch/master/graph/badge.svg)](https://codecov.io/gh/yanqd0/pytest-yapf3) -->
+
+[![Build](https://github.com/yanqd0/pytest-yapf3/actions/workflows/python-pytest.yml/badge.svg)](https://github.com/yanqd0/pytest-yapf3/actions/workflows/python-pytest.yml)
+[![AppVeyor](https://ci.appveyor.com/api/projects/status/umf6393qo2y7afog/branch/master?svg=true)](https://ci.appveyor.com/project/yanqd0/pytest-yapf3/branch/master)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3446/badge)](https://bestpractices.coreinfrastructure.org/projects/3446)
 [![Code style: yapf](https://img.shields.io/badge/code%20style-yapf-blue)](https://github.com/google/yapf)
 
@@ -120,7 +122,7 @@ you can use an unofficial badge to show off.
 
 > The MIT License (MIT)
 >
-> Copyright (c) 2019~2020 Yan QiDong
+> Copyright (c) 2019~2022 Yan QiDong
 
 This repository is forked from [pytest-yapf] in 2019, which is [not maintained] since 2017.
 Besides extra features, the project structure is adjusted,
