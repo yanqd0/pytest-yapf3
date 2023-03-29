@@ -1,7 +1,13 @@
 # Change Log
 
+## Release 0.7.0
+
+- Set pytest limit to `>=7`.
+- Fix a pytest warning with `from_parent`.
+
 ## Release 0.6.2
 
+- Set pytest limit to `>=5.4,<8`.
 - Upgrade dependencies in Pipfile and its lock.
 - Enable GitHub actions.
 - Delete `.travis.yml` and `.appveyor.yml`

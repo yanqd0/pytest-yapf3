@@ -67,7 +67,7 @@ def _should_ignore(path, ignore_globs):
     return any(path.fnmatch(glob) for glob in ignore_globs)
 
 
-def pytest_collect_file(path, parent):
+def pytest_collect_file(path, file_path, parent):
     """
     Return collection Node or None for the given path.
 
@@ -79,7 +79,7 @@ def pytest_collect_file(path, parent):
             path.ext == '.py' and
             not _should_ignore(path, config.yapf_ignore)
     ):  # yapf: disable
-        return YapfFile.from_parent(parent=parent, fspath=path)
+        return YapfFile.from_parent(parent=parent, path=file_path)
     return None
 
 

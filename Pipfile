@@ -19,4 +19,4 @@ setuptools-scm = "*"
 
 [packages]
 yapf = "*"
-pytest = ">=5.4,<8"
+pytest = ">=7"
